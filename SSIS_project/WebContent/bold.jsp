@@ -17,7 +17,7 @@
 <script type="text/javascript" src="path/to/jQuery.js">
 
 function setStrAttr(Str){ /* 필요한 곳에서 호출 */
-    $('span.s1 label.b').removeClass('b'); /* 기존 문자열에 대한 문자 속성 리셋 */
+    $('span.s1 label.b').removeClass('b'); /* 기존 문자열에 대한 문자 속성 리셋  이거 되는거 맞음?*/
     var $o = $('span.s1 label:contains("' +Str+ '")');
     
     if($o.length>0) $o.addClass('b'); /* label 안에 label 태그를 포함한 문자열이 계속 들어가는 것을 방지 */
