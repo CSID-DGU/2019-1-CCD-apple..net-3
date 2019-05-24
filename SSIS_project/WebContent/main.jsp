@@ -62,6 +62,8 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
   			String query = "SELECT * FROM tbl_law_cwn WHERE ( contents like \"%"+ content[i] + "%\")";
   			temp = temp + " union " + query;
 	  }
+	  stmt = conn.createStatement();
+	  rs = stmt.executeQuery(temp);
     //    if (seq_contents_a==null) { 
 	    // seq_contents_a="0";
       //     }
@@ -71,8 +73,7 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
   // String query1 = String query1 = "select family_tree_name, ccode_addr, contents,seq_contents from tbl_law tl, tbl_law_contents tlc where tl.seq=any(select tlc.seq from tbl_law_contents where tlc.title like '%"+title+"%' or tlc.contents like '%"+title+"%') group by tlc.ccode_addr order by tlc.ccode_addr;"; 
 
  
-  stmt = conn.createStatement();
-  rs = stmt.executeQuery(query1);
+ 
   
   // var pattern = document.getElementById("pattern").value;
   
