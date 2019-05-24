@@ -4,11 +4,25 @@
 <head>
 <title> 사회보장정보원 </title> 
 <style>
-	.found {background-color:#ff0;}
-  div.hang {font-wieght:normal; color:#777777}
-  div.hang label {font-wieght:normal; color:#777777} /* span.s1 과 spans1 label 은 동일 속성 */
-  div.hang label.b {font-weight:bold; background-color:yellow} /* spans1 label.b 인 경우에만 특별한 속성 */
-
+.b {font-weight:bold; background-color:yellow}
+  .law_title{
+  	font-size : 14pt;
+  	font-weight : bold;
+  	padding-bottom : 2pt;
+  	padding-right : 2pt;
+  }
+  
+  .SearchCard {padding : 5px;
+  font-size : 12pt;
+  line-height:150%;
+  border-bottom : 2px solid rgb(0, 90, 170);
+  border-radius : 3pt;
+  }
+  
+	@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+	:lang(ko) {
+  	font-family: 'Noto Sans KR', sans-serif;
+	}
 </style>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"> </script>
@@ -17,14 +31,21 @@
 
 <body>
 	<%@ include file="dbconn.jsp" %>
+	
 <%
 	request.setCharacterEncoding("utf-8");
 	String title=request.getParameter("title");
 	Statement stmt = null;
 	ResultSet rs = null;
-	
+	String temp = "SELECT * from tbl_law_cwn where seq_history = 0"; // 더미 쿼리
+	 
   try {
-  String query1 = "Select * from tbl_law_contents where title like \"%" +title+ "%\""; 
+	  int x= content.length;
+	  int j= 0;
+	  for (int i = 0; i < x; i++ ){
+  			String query = "SELECT * FROM tbl_law_cwn WHERE ( contents like \"%"+ content[i] + "%\")";
+  			temp = temp + " union " + query;
+	  }
  
   stmt = conn.createStatement();
   rs = stmt.executeQuery(query1);
@@ -40,10 +61,13 @@
   }
 
   while (rs.next())  {
-	  String law_title=rs.getString("title");
-	  String law_contents=rs.getString("contents");
-	  out.println(law_title);
-	  out.println(law_contents);	
+	  String law_name = rs.getString("lawname");
+	  String law_title = rs.getString("title");
+	  String law_contents=rs.getString("contents");%>
+	  
+	  <div lang="ko" class="SearchCard">
+	  <%out.println( law_name+"<div class=\"law_title\">"+law_title+"</div>"+law_contents);%>
+	  </div><%
   }
 
   rs.close();
