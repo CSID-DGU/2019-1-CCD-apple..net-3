@@ -20,11 +20,20 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String title=request.getParameter("title");
-	Statement stmt = null;
-	ResultSet rs = null;
+        String contents=request.getParameter("contents"); 
+        String ccode_addr=request.getParameter("ccode_addr"); 
+        String seq_contents_a=request.getParameter("seq_contents");
+          if (seq_contents_a==null) { 
+	     seq_contents_a="0";
+           }
+        int seq_contents=Integer.parseInt(seq_contents_a);
+       String family_tree_name=request.getParameter("family_tree_name"); 
+
 	
   try {
-  String query1 = "Select * from tbl_law_contents where title like \"%" +title+ "%\""; 
+        Statement stmt = null;
+	ResultSet rs = null;
+  String query1 = String query1 = "select family_tree_name, ccode_addr, contents,seq_contents from tbl_law tl, tbl_law_contents tlc where tl.seq=any(select tlc.seq from tbl_law_contents where tlc.title like '%"+title+"%' or tlc.contents like '%"+title+"%') group by tlc.ccode_addr order by tlc.ccode_addr;"; 
  
   stmt = conn.createStatement();
   rs = stmt.executeQuery(query1);
@@ -40,10 +49,33 @@
   }
 
   while (rs.next())  {
-	  String law_title=rs.getString("title");
-	  String law_contents=rs.getString("contents");
-	  out.println(law_title);
-	  out.println(law_contents);	
+  	String law_contents=rs.getString("contents");
+     
+        String family_output=rs.getString("family_tree_name"); 
+     
+        String law_jang_jo = rs.getString("ccode_addr"); 
+     
+        String seq_c = rs.getString("seq_contents");
+	%>
+	
+	<%
+	out.println("<br>"+family_output+"<br>"); %>
+      
+        <a href="view.jsp?seq_c=<%=seq_c%>"> <%=law_jang_jo %> </a>
+      
+    
+        <%
+        out.println("<br>----------------------");
+        out.println("<br>"+law_contents);
+        out.println("<br>------------------------------"); 
+     
+       %>
+ 
+	 
+
+       <% 
+     
+	
   }
 
   rs.close();
