@@ -12,7 +12,7 @@
 	원하는 규정을 검색하세요.
 	<form action="./main.jsp" method="post">
 		<p> 제목 및 내용 : 
-		<input type="text" name="title" id ="title">
+		<input type="text" name="contents" id ="contents">
 		<p> <input type="submit" value="검색 " >
 	</form>
 	

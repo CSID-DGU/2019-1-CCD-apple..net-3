@@ -34,8 +34,8 @@
 	
 <%
 	request.setCharacterEncoding("utf-8");
-	String title=request.getParameter("title");
-
+    String contents = request.getParameter("contents");
+	String content[] = contents.split(" ");
 	Statement stmt = null;
 	ResultSet rs = null;
 	String temp = "SELECT * from tbl_law_cwn where seq_history = 0"; // 더미 쿼리
