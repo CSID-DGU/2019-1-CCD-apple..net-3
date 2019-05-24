@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <style>
-  span.s1 {font-wieght:normal; color:#777777}
+  span.s1 {font-wieght:normal; color:#777777} /* test */
   span.s1 label {font-wieght:normal; color:color:#777777} /* span.s1 과 spans1 label 은 동일 속성 */
   span.s1 label.b {font-weight:bold; color:red} /* spans1 label.b 인 경우에만 특별한 속성 */
 </style>
