@@ -35,6 +35,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String title=request.getParameter("title");
+
 	Statement stmt = null;
 	ResultSet rs = null;
 	String temp = "SELECT * from tbl_law_cwn where seq_history = 0"; // 더미 쿼리
@@ -46,13 +47,21 @@
   			String query = "SELECT * FROM tbl_law_cwn WHERE ( contents like \"%"+ content[i] + "%\")";
   			temp = temp + " union " + query;
 	  }
+    //    if (seq_contents_a==null) { 
+	    // seq_contents_a="0";
+      //     }
+       // int seq_contents=Integer.parseInt(seq_contents_a);
+     //  String family_tree_name=request.getParameter("family_tree_name"); 
+
+  // String query1 = String query1 = "select family_tree_name, ccode_addr, contents,seq_contents from tbl_law tl, tbl_law_contents tlc where tl.seq=any(select tlc.seq from tbl_law_contents where tlc.title like '%"+title+"%' or tlc.contents like '%"+title+"%') group by tlc.ccode_addr order by tlc.ccode_addr;"; 
+
  
   stmt = conn.createStatement();
   rs = stmt.executeQuery(query1);
   
   // var pattern = document.getElementById("pattern").value;
   
-  conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+  //conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); /// 불필요함.
   
   if (!rs.next()) {
 	  out.println("해당하는 것이 없습니다");
@@ -61,6 +70,7 @@
   }
 
   while (rs.next())  {
+
 	  String law_name = rs.getString("lawname");
 	  String law_title = rs.getString("title");
 	  String law_contents=rs.getString("contents");%>
@@ -68,8 +78,34 @@
 	  <div lang="ko" class="SearchCard">
 	  <%out.println( law_name+"<div class=\"law_title\">"+law_title+"</div>"+law_contents);%>
 	  </div><%
-  }
 
+  }
+// String law_contents=rs.getString("contents");
+     
+       // String family_output=rs.getString("family_tree_name"); 
+     
+       // String law_jang_jo = rs.getString("ccode_addr"); 
+     
+       // String seq_c = rs.getString("seq_contents");
+//	%>
+	
+	//<%
+	//out.println("<br>"+family_output+"<br>"); %>
+      
+    //    <a href="view.jsp?seq_c=<%=seq_c%>"> <%=law_jang_jo %> </a>
+      
+    
+      //  <%
+       // out.println("<br>----------------------");
+       // out.println("<br>"+law_contents);
+       // out.println("<br>------------------------------"); 
+     
+      // %>
+ 
+	 
+
+      // <% 
+     
   rs.close();
   stmt.close();
   conn.close();
