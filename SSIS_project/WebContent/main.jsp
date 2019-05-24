@@ -4,11 +4,25 @@
 <head>
 <title> 사회보장정보원 </title> 
 <style>
-	.found {background-color:#ff0;}
-  div.hang {font-wieght:normal; color:#777777}
-  div.hang label {font-wieght:normal; color:#777777} /* span.s1 과 spans1 label 은 동일 속성 */
-  div.hang label.b {font-weight:bold; background-color:yellow} /* spans1 label.b 인 경우에만 특별한 속성 */
-
+.b {font-weight:bold; background-color:yellow}
+  .law_title{
+  	font-size : 14pt;
+  	font-weight : bold;
+  	padding-bottom : 2pt;
+  	padding-right : 2pt;
+  }
+  
+  .SearchCard {padding : 5px;
+  font-size : 12pt;
+  line-height:150%;
+  border-bottom : 2px solid rgb(0, 90, 170);
+  border-radius : 3pt;
+  }
+  
+	@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+	:lang(ko) {
+  	font-family: 'Noto Sans KR', sans-serif;
+	}
 </style>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"> </script>
@@ -17,23 +31,30 @@
 
 <body>
 	<%@ include file="dbconn.jsp" %>
+	
 <%
 	request.setCharacterEncoding("utf-8");
 	String title=request.getParameter("title");
-        String contents=request.getParameter("contents"); 
-        String ccode_addr=request.getParameter("ccode_addr"); 
-        String seq_contents_a=request.getParameter("seq_contents");
-          if (seq_contents_a==null) { 
-	     seq_contents_a="0";
-           }
-        int seq_contents=Integer.parseInt(seq_contents_a);
-       String family_tree_name=request.getParameter("family_tree_name"); 
 
-	
-  try {
-        Statement stmt = null;
+	Statement stmt = null;
 	ResultSet rs = null;
-  String query1 = String query1 = "select family_tree_name, ccode_addr, contents,seq_contents from tbl_law tl, tbl_law_contents tlc where tl.seq=any(select tlc.seq from tbl_law_contents where tlc.title like '%"+title+"%' or tlc.contents like '%"+title+"%') group by tlc.ccode_addr order by tlc.ccode_addr;"; 
+	String temp = "SELECT * from tbl_law_cwn where seq_history = 0"; // 더미 쿼리
+	 
+  try {
+	  int x= content.length;
+	  int j= 0;
+	  for (int i = 0; i < x; i++ ){
+  			String query = "SELECT * FROM tbl_law_cwn WHERE ( contents like \"%"+ content[i] + "%\")";
+  			temp = temp + " union " + query;
+	  }
+    //    if (seq_contents_a==null) { 
+	    // seq_contents_a="0";
+      //     }
+       // int seq_contents=Integer.parseInt(seq_contents_a);
+     //  String family_tree_name=request.getParameter("family_tree_name"); 
+
+  // String query1 = String query1 = "select family_tree_name, ccode_addr, contents,seq_contents from tbl_law tl, tbl_law_contents tlc where tl.seq=any(select tlc.seq from tbl_law_contents where tlc.title like '%"+title+"%' or tlc.contents like '%"+title+"%') group by tlc.ccode_addr order by tlc.ccode_addr;"; 
+
  
   stmt = conn.createStatement();
   rs = stmt.executeQuery(query1);
@@ -49,35 +70,42 @@
   }
 
   while (rs.next())  {
-  	String law_contents=rs.getString("contents");
+
+	  String law_name = rs.getString("lawname");
+	  String law_title = rs.getString("title");
+	  String law_contents=rs.getString("contents");%>
+	  
+	  <div lang="ko" class="SearchCard">
+	  <%out.println( law_name+"<div class=\"law_title\">"+law_title+"</div>"+law_contents);%>
+	  </div><%
+
+  }
+// String law_contents=rs.getString("contents");
      
-        String family_output=rs.getString("family_tree_name"); 
+       // String family_output=rs.getString("family_tree_name"); 
      
-        String law_jang_jo = rs.getString("ccode_addr"); 
+       // String law_jang_jo = rs.getString("ccode_addr"); 
      
-        String seq_c = rs.getString("seq_contents");
-	%>
+       // String seq_c = rs.getString("seq_contents");
+//	%>
 	
-	<%
-	out.println("<br>"+family_output+"<br>"); %>
+	//<%
+	//out.println("<br>"+family_output+"<br>"); %>
       
-        <a href="view.jsp?seq_c=<%=seq_c%>"> <%=law_jang_jo %> </a>
+    //    <a href="view.jsp?seq_c=<%=seq_c%>"> <%=law_jang_jo %> </a>
       
     
-        <%
-        out.println("<br>----------------------");
-        out.println("<br>"+law_contents);
-        out.println("<br>------------------------------"); 
+      //  <%
+       // out.println("<br>----------------------");
+       // out.println("<br>"+law_contents);
+       // out.println("<br>------------------------------"); 
      
-       %>
+      // %>
  
 	 
 
-       <% 
+      // <% 
      
-	
-  }
-
   rs.close();
   stmt.close();
   conn.close();
