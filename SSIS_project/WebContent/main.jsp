@@ -31,7 +31,7 @@
   
   // var pattern = document.getElementById("pattern").value;
   
-  conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+  //conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD); /// 불필요함.
   
   if (!rs.next()) {
 	  out.println("해당하는 것이 없습니다");
