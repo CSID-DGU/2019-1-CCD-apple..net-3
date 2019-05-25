@@ -38,17 +38,17 @@
 	<script>
 function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
 	 
-    $('div.hang label.b').removeClass('b');/* 기존 문자열에 대한 문자 속성 리셋 */
-   var $o = $('div.hang label:contains("' +Str2+ '")');
+    //$('div.hang label.b').removeClass('b');/* 기존 문자열에 대한 문자 속성 리셋 */
+   var $o = $('div label:contains("' +Str2+ '")');
    if($o.length>0) $o.addClass('b'); /* label 안에 label 태그를 포함한 문자열이 계속 들어가는 것을 방지 */
   else{
-    $o = $('div.hang:contains("' +Str2+ '")');
+    $o = $('div:contains("' +Str2+ '")');
     $o.each(function(){ $(this).html($(this).html().split(Str2).join('<label class="b">' +Str2+ '</label>')); });
    }
    if($o.length>0) $o.get(0).scrollIntoView(true); /* 발견된 첫번째 위치로 이동. 발견된 것이 없으면 Stop. 발견된 DOM 구조가 없으면 통과 */
  }
- 
- 
+ var i = 0;
+ var temp = [];
 </script>
 
 <%
