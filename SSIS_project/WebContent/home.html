@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="app.css" />
+
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            transition: background-color 0.5s;
+        }
+    </style>
+</head>
+
+<body id="view">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">홈</a>
+        <a href="#">즐겨찾기</a>
+        <a href="#">최근 본 목록</a>
+        <a href="#">관리자</a>
+    </div>
+    <div class="Bar_style">
+        <button class="menu_button" onclick="openNav()">
+            <img src="img/png/menubutton.png" alt="menu_button">
+        </button>
+        <img class="logo" alt="logo" src="img/png/logo.gif">
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "270px";
+            document.getElementById("view").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("view").style.marginLeft = "0";
+            document.body.style.backgroundColor = "white";
+        }
+    </script>
+    <div class="cap">
+        <input class="search" name="contents" type="text" placeholder="검색어를 입력해주세요." />
+        <button class="search_button">
+            <img src="img/png/searchbutton.png">
+        </button>
+    </div>
+    <div class="menu_div" id="menu">
+        <div class="menu_set">
+            <div class="button_margin">
+                <button class="menubutton">
+                    <img src="img/png/menu4.png" alt="menu1" />
+                </button>
+                <p class="button_label">규정목록</p>
+            </div>
+            <div class="button_margin">
+                <button class="menubutton">
+                    <img src="img/png/menu2.png" alt="menu2" />
+                </button>
+                <p class="button_label">즐겨찾기</p>
+            </div>
+        </div>
+        <p> </p>
+        <div class="menu_set">
+            <div class="button_margin">
+                <button class="menubutton">
+                    <img src="img/png/menu1.png" alt="menu3" />
+                </button>
+                <p class="button_label">최근 본 규정</p>
+            </div>
+            <div class="button_margin">
+                <button class="menubutton">
+                    <img src="img/png/menu3.png" alt="menu4" />
+                </button>
+                <p class="button_label">문제은행</p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
