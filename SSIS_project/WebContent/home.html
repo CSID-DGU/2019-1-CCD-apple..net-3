@@ -1,93 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
 
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="app.css" />
-
-    <style>
-        body {
-            font-family: "Lato", sans-serif;
-            transition: background-color 0.5s;
-        }
-    </style>
+<title> 사회보장정보원 </title> 
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" type="text/css" href="app.css?alter" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
+<!--<script type="text/javascript" src="https://open-korean-text.herokuapp.com/"></script>-->
 </head>
 
-<body id="view">
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">홈</a>
-        <a href="#">즐겨찾기</a>
-        <a href="#">최근 본 목록</a>
-        <a href="#">관리자</a>
-    </div>
-    <div class="Bar_style">
-        <button class="menu_button" onclick="openNav()">
-            <img src="img/png/menubutton.png" alt="menu_button">
-        </button>
-        <img class="logo" alt="logo" src="img/png/logo.gif">
-    </div>
+<body>
+	<%@ include file="dbconn.jsp" %>
+	<%@ include file="top.jsp" %>
+	<script>
+function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
+	 
+    //$('div.hang label.b').removeClass('b');/* 기존 문자열에 대한 문자 속성 리셋 */
+   var $o = $('div label:contains("' +Str2+ '")');
+   if($o.length>0) $o.addClass('b'); /* label 안에 label 태그를 포함한 문자열이 계속 들어가는 것을 방지 */
+  else{
+    $o = $('div:contains("' +Str2+ '")');
+    $o.each(function(){ $(this).html($(this).html().split(Str2).join('<label class="b">' +Str2+ '</label>')); });
+   }
+  //// if($o.length>0) $o.get(0).scrollIntoView(true); /* 발견된 첫번째 위치로 이동. 발견된 것이 없으면 Stop. 발견된 DOM 구조가 없으면 통과 */
+ }
+ function page_move(seq){
+	 var f = document.paging;
+	 f.page.value = seq;
+	 f.action="view.jps";
+	 f.method="post";
+	 f.submit();
+ }
+ 
+ var i = 0;
+ var temp = [];
+</script>
 
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "270px";
-            document.getElementById("view").style.marginLeft = "0px";
-            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-        }
+<%
+	request.setCharacterEncoding("utf-8");
+    String contents = request.getParameter("contents");
+	String content[] = contents.split(" ");
+	Statement stmt = null;
+	ResultSet rs = null;
+	String temp = "select * from tbl_law_cwn where seq = 0"; // 더미 쿼리
+	ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+	
+  try {
+	  for (int i = 0; i < content.length; i++ ){
+		String query = "SELECT * FROM tbl_law_cwn WHERE contents like \"%"+ content[i] + "%\" and seq_history in (select max(seq_history) from tbl_law_cwn group by seq)";
+  		temp = temp + " union " + query;
+	  }
+	  temp = temp + " order by seq, arrange";
+	  stmt = conn.createStatement();
+	  rs = stmt.executeQuery(temp);
+    	
+  if (!rs.next()) {
+	  out.println("해당하는 것이 없습니다");
+  } else {
+	  rs.previous();	
+  }
+  while (rs.next())  {
+	  HashMap<String, String> map = new HashMap<String, String>();
+	  map.put("law_name",rs.getString("lawname"));
+	  map.put("law_title",rs.getString("title"));
+	  map.put("law_contents",rs.getString("contents"));
+	  map.put("ccode_addr",rs.getString("ccode_addr"));
+	  map.put("seq_c",rs.getString("seq_contents"));
+	  map.put("family_tree_name",rs.getString("family_tree_name"));
+	  data.add(map);
+  	}
+  	 rs.close();
+	 stmt.close();
+	 conn.close();
+ 	}
+  
+ catch(Exception e){
+  out.print("Exception Error...");
+  out.print(e.toString());
+ }
+ 
+ finally {
+ }
+  
 
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("view").style.marginLeft = "0";
-            document.body.style.backgroundColor = "white";
-        }
-    </script>
-    <div class="cap">
-    <form action="./main.jsp" method="post">
-        <input class="search" name="contents" type="text" placeholder="검색어를 입력해주세요." />
-        <input type="submit" class="search_button">
-            <img src="img/png/searchbutton.png" />
-        </input>
-        </form>
-    </div>
-    
-    <div class="menu_div" id="menu">
-        <div class="menu_set">
-            <div class="button_margin">
-                <button class="menubutton">
-                    <img src="img/png/menu4.png" alt="menu1" />
-                </button>
-                <p class="button_label">규정목록</p>
-            </div>
-            <div class="button_margin">
-                <button class="menubutton">
-                    <img src="img/png/menu2.png" alt="menu2" />
-                </button>
-                <p class="button_label">즐겨찾기</p>
-            </div>
-        </div>
-        <p> </p>
-        <div class="menu_set">
-            <div class="button_margin">
-                <button class="menubutton">
-                    <img src="img/png/menu1.png" alt="menu3" />
-                </button>
-                <p class="button_label">최근 본 규정</p>
-            </div>
-            <div class="button_margin">
-                <button class="menubutton">
-                    <img src="img/png/menu3.png" alt="menu4" />
-                </button>
-                <p class="button_label">문제은행</p>
-            </div>
-        </div>
-
-
-
-    </div>
+ArrayList<String> temp_c = new ArrayList<String>();
+for (int i=0; i < content.length; i++){
+	temp_c.add(content[i]);
+}
+for (int i=0; i < data.size(); i++){
+	 %><div lang ="ko" class="SearchCard"><%
+	 HashMap<String, String> takeMap = (HashMap<String, String>)data.get(i);
+	 out.print("<a href=\"view.jsp\">"+takeMap.get("family_tree_name")+"</a> <br>"+takeMap.get("ccode_addr")+"<br>"+takeMap.get("law_contents"));
+	 %>
+	 </div>
+	 <%}
+for (int i=0; i < content.length; i++){
+	%>
+	<script>
+		setStrAttr("<%=content[i]%>")
+	</script>
+	 <%
+}
+	 %>
 
 </body>
-
 </html>
+
+
