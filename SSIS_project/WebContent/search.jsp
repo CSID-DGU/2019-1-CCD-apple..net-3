@@ -13,7 +13,7 @@
 	<form action="./main.jsp" method="post">
 		<p> 제목 및 내용 : 
 		<input type="text" name="contents" id ="contents">
-		<p> <input type="submit" value="검색 " >
+		<p> <button type="submit" value="검색 " />
 	</form>
 	
 </body>

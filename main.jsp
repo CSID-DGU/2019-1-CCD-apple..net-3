@@ -93,9 +93,7 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
 	  data.add(map);
   }
 
-  rs.close();
-  stmt.close();
-  conn.close();
+  
  }
   
  catch(Exception e){
@@ -104,21 +102,26 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
  }
  
  finally {
-	 String temp_c = new String();
-	 
-	 for (int i=0; i < data.size(); i++){
-		 HashMap<String, String> takeMap = (HashMap<String, String>)data.get(i);
-		 out.print(takeMap.get("family_tree_name")+"<br>"+takeMap.get("ccode_addr")+"<br>"+takeMap.get("law_contents"));
-		 temp_c = data.get(i).get("law_contents");
-	 %>
-	 <div lang="ko" class="SearchCard">
-	 	<script>
-		setStrAttr(<%=temp_c%>);
-	 	</script>
-	 </div>
-	 <%
+	 rs.close();
+	 stmt.close();
+	 conn.close();
  }
  }
 %>
+<div lang ="ko" class="SearchCard">
+<%
+String temp_c = data;
+for (int i=0; i < data.size(); i++){
+	 HashMap<String, String> takeMap = (HashMap<String, String>)data.get(i);
+	 out.print(takeMap.get("family_tree_name")+"<br>"+takeMap.get("ccode_addr")+"<br>"+takeMap.get("law_contents"));
+	 temp_c = data.get(i).get("law_contents");
+	 %>
+	 <script>
+		setStrAttr(<%=temp_c%>);
+	 </script>
+	 <%} 
+	 %>
+</div>
+
 </body>
 </html>
