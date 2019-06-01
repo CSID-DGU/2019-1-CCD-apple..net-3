@@ -1,40 +1,22 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
+
 <html>
 <head>
 <title> 사회보장정보원 </title> 
-<style>
-.b {font-weight:bold; background-color:yellow}
-  .law_title{
-  	font-size : 14pt;
-  	font-weight : bold;
-  	padding-bottom : 2pt;
-  	padding-right : 2pt;
-  }
-   .found {background-color:#ff0;}
-  div.hang {font-wieght:normal; color:#777777}
-  div.hang label {font-wieght:normal; color:#777777} /* span.s1 과 spans1 label 은 동일 속성 */
-  div.hang label.b {font-weight:bold; background-color:yellow} /* spans1 label.b 인 경우에만 특별한 속성 */
-  
-  .SearchCard {padding : 5px;
-  font-size : 12pt;
-  line-height:150%;
-  border-bottom : 2px solid rgb(0, 90, 170);
-  border-radius : 3pt;
-  }
-  
-	@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-	:lang(ko) {
-  	font-family: 'Noto Sans KR', sans-serif;
-	}
-</style>
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"> </script>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" type="text/css" href="app.css?alter" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
+<!--<script type="text/javascript" src="https://open-korean-text.herokuapp.com/"></script>-->
 </head>
 
 <body>
 	<%@ include file="dbconn.jsp" %>
+	<%@ include file="top.jsp" %>
 	<script>
 function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
 	 
@@ -45,8 +27,16 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
     $o = $('div:contains("' +Str2+ '")');
     $o.each(function(){ $(this).html($(this).html().split(Str2).join('<label class="b">' +Str2+ '</label>')); });
    }
-   if($o.length>0) $o.get(0).scrollIntoView(true); /* 발견된 첫번째 위치로 이동. 발견된 것이 없으면 Stop. 발견된 DOM 구조가 없으면 통과 */
+  //// if($o.length>0) $o.get(0).scrollIntoView(true); /* 발견된 첫번째 위치로 이동. 발견된 것이 없으면 Stop. 발견된 DOM 구조가 없으면 통과 */
  }
+ function page_move(seq){
+	 var f = document.paging;
+	 f.page.value = seq;
+	 f.action="view.jps";
+	 f.method="post";
+	 f.submit();
+ }
+ 
  var i = 0;
  var temp = [];
 </script>
@@ -57,15 +47,15 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
 	String content[] = contents.split(" ");
 	Statement stmt = null;
 	ResultSet rs = null;
-	String temp = "SELECT * from tbl_law_mj where seq_history = 0"; // 더미 쿼리
-	 
+	String temp = "select * from tbl_law_cwn where seq = 0"; // 더미 쿼리
+	ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
+	
   try {
-	  int x= content.length;
-	  int j= 0;
-	  for (int i = 0; i < x; i++ ){
-  			String query = "SELECT * FROM tbl_law_mj WHERE ( contents like \"%"+ content[i] + "%\") group by(ccode_addr)";
-  			temp = temp + " union " + query;
+	  for (int i = 0; i < content.length; i++ ){
+		String query = "SELECT * FROM tbl_law_cwn WHERE contents like \"%"+ content[i] + "%\" and seq_history in (select max(seq_history) from tbl_law_cwn group by seq)";
+  		temp = temp + " union " + query;
 	  }
+	  temp = temp + " order by seq, arrange";
 	  stmt = conn.createStatement();
 	  rs = stmt.executeQuery(temp);
     	
@@ -75,47 +65,50 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
 	  rs.previous();	
   }
   while (rs.next())  {
-	  String law_name = rs.getString("lawname");
-	 
-	  String law_title = rs.getString("title");
-	  String family_tree_name=rs.getString("family_tree_name"); 
-	  
-	  String law_contents=rs.getString("contents");
-	  String ccode_addr=rs.getString("ccode_addr"); 
-	  String seq_c = rs.getString("seq_contents");
-
-       
-	 %>
-
-	  <div lang="ko" class="SearchCard">
-	  
-	 <% out.println( family_tree_name +"<br>"+ccode_addr+"<br>");%>
-	  <a href="view.jsp?seq_c=<%=seq_c%>"> <%=law_title %> </a>
-	 <% out.println("<br>"+law_contents); %>
-	 
-	  </div><%
-  }
-
-  rs.close();
-  stmt.close();
-  conn.close();
- } 
+	  HashMap<String, String> map = new HashMap<String, String>();
+	  map.put("law_name",rs.getString("lawname"));
+	  map.put("law_title",rs.getString("title"));
+	  map.put("law_contents",rs.getString("contents"));
+	  map.put("ccode_addr",rs.getString("ccode_addr"));
+	  map.put("seq_c",rs.getString("seq_contents"));
+	  map.put("family_tree_name",rs.getString("family_tree_name"));
+	  data.add(map);
+  	}
+  	 rs.close();
+	 stmt.close();
+	 conn.close();
+ 	}
   
  catch(Exception e){
   out.print("Exception Error...");
   out.print(e.toString());
  }
-  
+ 
  finally {
-	 for (int i=0; i < content.length; i++){%>
-	 <script>
-		temp[i] = "<%=content[i]%>";
-		setStrAttr(temp[i]);
-		i++;
-	 </script><%
  }
- }
-%>
+  
+
+ArrayList<String> temp_c = new ArrayList<String>();
+for (int i=0; i < content.length; i++){
+	temp_c.add(content[i]);
+}
+for (int i=0; i < data.size(); i++){
+	 %><div lang ="ko" class="SearchCard"><%
+	 HashMap<String, String> takeMap = (HashMap<String, String>)data.get(i);
+	 out.print("<a href=\"view.jsp\">"+takeMap.get("family_tree_name")+"</a> <br>"+takeMap.get("ccode_addr")+"<br>"+takeMap.get("law_contents"));
+	 %>
+	 </div>
+	 <%}
+for (int i=0; i < content.length; i++){
+	%>
+	<script>
+		setStrAttr("<%=content[i]%>")
+	</script>
+	 <%
+}
+	 %>
+
 </body>
 </html>
+
 
