@@ -1,4 +1,4 @@
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "270px";
@@ -12,6 +12,7 @@
             document.body.style.backgroundColor = "white";
         }
 </script>
+
 <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">홈</a>
@@ -19,6 +20,7 @@
         <a href="#">최근 본 목록</a>
         <a href="#">관리자</a>
 </div>
+
 <div class="Bar_style">
         <button class="hamburger_button" onclick="openNav()">
             <img src="img/png/menubutton.png" alt="hamburger_button">
@@ -27,6 +29,7 @@
         	<img class="logo" alt="logo" src="img/png/logo.gif">
         </a>
 </div>
+
 <form action="./main.jsp" method="post">
     <div class="cap">
         <input class="search" name="contents" type="text" placeholder="검색어를 입력해주세요." />

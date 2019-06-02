@@ -5,35 +5,23 @@
 <html>
 <head>
 <title> 사회보장정보원 </title> 
-	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="app.css">
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"> </script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> </script>
 <script>
-function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
-	 
-    //$('div.hang label.b').removeClass('b');/* 기존 문자열에 대한 문자 속성 리셋 */
-   var $o = $('div label:contains("' +Str2+ '")');
-   if($o.length>0) $o.addClass('b'); /* label 안에 label 태그를 포함한 문자열이 계속 들어가는 것을 방지 */
-  else{
-    $o = $('div:contains("' +Str2+ '")');
-    $o.each(function(){ $(this).html($(this).html().split(Str2).join('<label class="b">' +Str2+ '</label>')); });
-   }
-  if($o.length>0) $o.get(0).scrollIntoView(true); /* 발견된 첫번째 위치로 이동. 발견된 것이 없으면 Stop. 발견된 DOM 구조가 없으면 통과 */
- }
+
 </script>
 </head>
 <body>
 	<%@ include file="dbconn.jsp" %>
-	<%@ include file="top.jsp" %>
+	<%@ include file="top.jsp"%>
 	<div>
 	 <input type="text" id="jomun">
 	 <button>다음</button>
 	</div>
 	<script>
 		var input = document.getElementById("jomun").value;
-		setStrAttr(input);
 	</script>	
 <%
 	request.setCharacterEncoding("utf-8");
@@ -57,7 +45,6 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
 	  tempmap.put("contents",rs.getString("contents"));
 	  contentsArray.add(tempmap);
 	  // String seq_contents= rs.getString("seq_contents");
-	 
 	   String seq_contents_a=request.getParameter("seq_contents");
   }
   rs.close();
@@ -73,13 +60,13 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
  finally {
  }
  %>
- 	<div class="SearchCard">
+ 	<div lang="ko" class="SearchCard">
  <%
   for(int i=0; i <contentsArray.size(); i++){
 	  String viewtitle = contentsArray.get(i).get("title");
 	  String viewcontents = contentsArray.get(i).get("contents");
-	  %> <div class="view_title"> <%=viewtitle%> </div>
-	  	 <div class="view_contents"><%=viewcontents%></div> 
+	  %> <div class="view_title"> <%=viewtitle%> </div> 
+	  	 <div class="view_contents"><%=viewcontents%></div> <br> 
 	  <%
   }
 %>
