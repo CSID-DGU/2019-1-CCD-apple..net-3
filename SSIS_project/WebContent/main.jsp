@@ -29,14 +29,6 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
    }
   //// if($o.length>0) $o.get(0).scrollIntoView(true); /* 발견된 첫번째 위치로 이동. 발견된 것이 없으면 Stop. 발견된 DOM 구조가 없으면 통과 */
  }
- function page_move(seq){
-	 var f = document.paging;
-	 f.page.value = seq;
-	 f.action="view.jps";
-	 f.method="post";
-	 f.submit();
- }
- 
  var i = 0;
  var temp = [];
 </script>
@@ -86,27 +78,24 @@ function setStrAttr(Str2){ /* 필요한 곳에서 호출 */
  
  finally {
  }
-  
-
-ArrayList<String> temp_c = new ArrayList<String>();
-for (int i=0; i < content.length; i++){
-	temp_c.add(content[i]);
-}
 for (int i=0; i < data.size(); i++){
-	 %><div lang ="ko" class="SearchCard"><%
-	 HashMap<String, String> takeMap = (HashMap<String, String>)data.get(i);
-	 out.print("<a href=\"view.jsp\">"+takeMap.get("family_tree_name")+"</a> <br>"+takeMap.get("ccode_addr")+"<br>"+takeMap.get("law_contents"));
-	 %>
+	HashMap<String, String> takeMap = (HashMap<String, String>)data.get(i);
+	 String family_tree_name = takeMap.get("family_tree_name");
+	 String law_name = takeMap.get("law_name");
+	 String ccode_addr = takeMap.get("ccode_addr");
+	 String law_contents = takeMap.get("law_contents");
+
+	 %><div lang ="ko" class="SearchCard">
+	 <a href="view.jsp?law_name=<%=law_name%>"> <%=family_tree_name%> </a>
+	 <br> <%=ccode_addr %>
+	 <br> <%=law_contents%>
 	 </div>
-	 <%}
-for (int i=0; i < content.length; i++){
-	%>
+	 <%}%>
+	<% for (int i=0; i < content.length; i++){ %>
 	<script>
-		setStrAttr("<%=content[i]%>")
+		setStrAttr("<%=content[i]%>");
 	</script>
-	 <%
-}
-	 %>
+	<%} %>
 
 </body>
 </html>
