@@ -1,12 +1,13 @@
-
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-:lang(ko){
-	font-family: 'Noto Sans KR', sans-serif;
+
+:lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-form{
-  	margin : 0px;
-  }
+form {
+    margin: 0px;
+}
+
 body {
     width: 375px;
     height: 667px;
@@ -35,7 +36,7 @@ body {
 }
 
 .hamburger_button {
-    
+
     margin-top: 15px;
     margin-left: 2px;
     padding: 5px;
@@ -57,7 +58,6 @@ body {
 }
 
 .cap {
-    position: relative;
     display: flex;
     flex-direction: row;
     border: 1.5px solid rgb(131, 143, 151);
@@ -107,6 +107,27 @@ body {
     border-radius: 2px;
     padding: 5px;
     margin: 5px;
+}
+
+.searchtypeset {
+    display: flex;
+    flex-direction: row;
+    width: 330px;
+    height: 40px;
+}
+
+.lawsearch {
+    width: 50%;
+    heigth: 40px;
+    align-text: center;
+    border: 0px;
+    border-right: 1.5px solid rgb(0, 90, 170);
+    background-color: rgba(255, 255, 255, 0);
+    margin-bottom: 5px;
+}
+
+.right {
+    border: 0px;
 }
 
 .search_result {
@@ -229,23 +250,57 @@ body {
         font-size: 18px;
     }
 }
-.b {font-weight:bold; background-color:yellow}
-.law_title{
-  	font-size : 14pt;
-  	font-weight : bold;
-  	padding-bottom : 2pt;
-  	padding-right : 2pt;
-  }
-.found {background-color:#ff0;}\
-div.hang {font-wieght:normal; color:#777777}
-div.hang label {font-wieght:normal; color:#777777} /* span.s1 °ú spans1 label Àº µ¿ÀÏ ¼Ó¼º */
-div.hang label.b {font-weight:bold; background-color:yellow} /* spans1 label.b ÀÎ °æ¿ì¿¡¸¸ Æ¯º°ÇÑ ¼Ó¼º */
-  
-.SearchCard {padding : 5px;
-  font-size : 12pt;
-  line-height:150%;
-  border-bottom : 2px solid rgb(0, 90, 170);
-  border-radius : 3pt;
-  padding: 0px 15px 15px 15px;
-  margin: 0px 10px 5px 10px;
-  }
+
+.b {
+    font-weight: bold;
+    background-color: yellow
+}
+
+.law_title {
+    font-size: 14pt;
+    font-weight: bold;
+    padding-bottom: 2pt;
+    padding-right: 2pt;
+}
+
+.found {
+    background-color: #ff0;
+}
+
+\
+div.hang {
+    font-wieght: normal;
+    color: #777777
+}
+
+div.hang label {
+    font-wieght: normal;
+    color: #777777
+}
+
+/* span.s1 å ì™ì˜™ spans1 label å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒˆì‡½ì˜™ */
+div.hang label.b {
+    font-weight: bold;
+    background-color: yellow
+}
+
+/* spans1 label.b å ì™ì˜™ å ì™ì˜™è‘âˆ½ì˜™å ï¿½ íŠ¹å ì™ì˜™å ì™ì˜™ å ìŒˆì‡½ì˜™ */
+
+.SearchCard {
+    width: 320px;
+    padding: 5px;
+    font-size: 12pt;
+    line-height: 150%;
+    border-bottom: 2px solid rgb(0, 90, 170);
+    border-radius: 3pt;
+    padding: 0px 15px 15px 15px;
+    margin: 0px 10px 5px 10px;
+}
+
+
+
+.mask{width:100%; height:100%; position:fixed; left:0; top:0; z-index:10; background:#000; opacity:.5; filter:alpha(opacity=50);}
+
+#modalLayer{display:none; position:relative;}
+#modalLayer .modalContent{width:440px; height:200px; padding:20px; border:1px solid #ccc; position:fixed; left:50%; top:50%; z-index:11; background:#fff;}
+#modalLayer .modalContent button{position:absolute; right:0; top:0; cursor:pointer;}

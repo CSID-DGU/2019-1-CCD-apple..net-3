@@ -15,7 +15,7 @@
 
 <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">홈</a>
+        <a href="home.html">홈</a>
         <a href="#">즐겨찾기</a>
         <a href="#">최근 본 목록</a>
         <a href="#">관리자</a>
