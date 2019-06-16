@@ -39,11 +39,14 @@
        String [] filelist = f.list();
        for(int i=0;i<filelist.length;i++){
            java.io.File f2 = new java.io.File(dir + "/" + filelist[i]);
+           %> 
+           <img src="folder.png" width="30" height="15"> // 폴더모양 png 앞에 
+           <%
            %>
            
       <div lang="ko" class="container">
-      <div class ="one"><% out.print(i+1); %></div>
-       <div class ="two"><% out.println("<a href='C:/Users/USER/jsp_workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/minjin/fileup/"+f2.getName()+"'>"+f2.getName()+"</a><BR>");%></div>       
+   
+       <div class ="two"><% out.println("<a href='fileup/"+f2.getName()+"'>"+f2.getName()+"</a><BR>");%></div>       
           // 여기도 href 부분 수정해야함 !!! 
       </div>
       <% 
