@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>사회보장정보원 사규검색</title>
+    <link rel="stylesheet" type="text/css" href="app.css?alter" />
+    <!-- below script side navigation -->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "270px";
+            document.getElementById("page").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0px";
+            document.getElementById("page").style.marginLeft = "0px";
+            document.body.style.backgroundColor = "white";
+        }
+    </script>
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="home.html">홈</a>
+        <a href="bookmarkView.jsp">즐겨찾기</a>
+      
+        <a href="adminQuestion.jsp">관리자</a>
+    </div>
+    <!-- above side navigation -->
+    <!-- below top menu -->
+    <div class="topbar">
+    <div class="Bar_style">
+        <button class="hamburger_button" onclick="openNav()">
+            <img src="img/png/menubutton.png" alt="hamburger_button">
+        </button>
+        <a class="hometag" href="home.html">
+        	<img class="logo" alt="logo" src="img/png/logo.gif">
+        </a>
+    </div>
+    <div>
+    	<p class="title">사규관리 시스템</p>
+    </div>
+    <!-- above top menu -->
+	<form action="./main.jsp" method="post">
+    <div class="cap">
+            <input class="search" name="contents" type="text" placeholder="검색어를 입력해주세요." />
+            <button type="submit" class="search_button">
+                <img src="img/png/searchbutton.png">
+            </button>
+    </div>
+    </form>
+    </div>
+    <!-- below main menu button set -->
+    <div class="menu_div" id="menu">
+        <div class="menu_set">
+            <div class="button_margin">
+                <a href="Tree.jsp">
+                    <button class="menubutton">
+                        <img src="img/png/menu4.png" alt="menu1" />
+                    </button>
+                </a>
+                <p class="button_label">규정목록</p>
+
+            </div>
+            <div class="button_margin">
+               <a href="bookmarkView.jsp">
+                <button class="menubutton">
+                    <img src="img/png/menu2.png" alt="menu2" />
+                </button>
+               </a>
+               <p class="button_label">즐겨찾기</p>
+            </div>
+        </div>
+        <p> </p>
+        <div class="menu_set">
+            <div class="button_margin">
+             <a href="http://www.law.go.kr/">
+                <button class="menubutton">
+                    <img src="img/png/menu1.png" alt="menu3" />
+                </button>
+                </a>
+                <p class="button_label">국가법령정보센터</p>
+            </div>
+            <div class="button_margin">
+            <a href="questionBank.jsp">
+                <button class="menubutton">
+                    <img src="img/png/menu3.png" alt="menu4" />
+                </button>
+                </a>
+                <p class="button_label">문제은행</p>
+            </div>
+        </div>
+
+
+
+    </div>
+	<div>
+	<a href="http://www.alio.go.kr/home.do">
+		<img src="img/png/a.PNG" alt="alio" class="alio"/>
+	</a>
+	</div>
+</body>
+
+</html>
