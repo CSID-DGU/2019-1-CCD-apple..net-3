@@ -1,0 +1,358 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+:lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+form {
+    margin: 0px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+}
+.treeview{
+	align-items: left;
+	display: block;
+	width:340px;
+}
+.btn_click{
+	text-align:left;
+	
+}
+.topbar{
+	width: 90%;
+	background-color: rgb(255, 255, 255);
+}
+.Bar_style {
+	text-align:center;
+    height: 57px;
+    background-color: #ffffff;
+    flex-direction: row;
+    border-bottom: 2px solid rgb(0, 90, 170);
+    align-items: center;
+}
+.hometag{
+}
+.logo {
+    height: 32px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.hamburger_button {
+	position : absolute;
+	top : 7px;
+	left: 20px;
+	left-padding : 7px;
+    margin-top: 15px;
+    margin-left: 2px;
+    padding: 5px;
+    border: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.Bar_icon_style {
+    border-color: #ffffff;
+}
+.Fixed{
+	position:fixed;
+	top:0px;
+}
+.title {
+    padding-top: 45px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-weight:bold;
+    height: 30px;
+    font-size: 20px;
+    margin: 0px;
+    color: rgb(0, 90, 170);
+}
+
+.cap {
+    display: flex;
+    flex-direction: row;
+    border: 1.5px solid rgb(131, 143, 151);
+    height: 38px;
+    margin: 10px 5px;
+    padding: 2px;
+    border-radius: 2.5px;
+    box-shadow: 0.5px 0.5px 10px rgb(131, 143, 151);
+}
+
+.search {
+    align-items: center;
+    width: 90%;
+    padding-left: 5px;
+    padding: 2px;
+    border: 0px;
+    font-size: 18px;
+}
+
+.search_button {
+    display: flex;
+    text-align: center;
+    margin-left: 5px;
+    padding: 3px;
+    background-color: rgb(255, 255, 255);
+    border: 0px;
+}
+
+.search_box {
+    width: auto;
+    margin: 10px;
+    padding: 5px;
+    align-content: center;
+}
+
+.search_result_box {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    height: auto;
+    border-bottom: 1.5px solid rgb(0, 90, 170);
+    border-radius: 2px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.searchtypeset {
+    display: flex;
+    flex-direction: row;
+    width: 330px;
+    height: 40px;
+}
+
+.lawsearch {
+    width: 50%;
+    text-align: center;
+    border: 0px;
+    border-right: 1.5px solid rgb(0, 90, 170);
+    margin-bottom: 5px;
+}
+
+.right {
+    border: 0px;
+    background-color :  rgb(0, 140, 207);
+}
+
+.search_result {
+    margin: 5px;
+}
+
+.search_ltitle {
+    font-size: 12pt;
+}
+
+.search_atitle {
+    width: 95%;
+    float: right;
+    font-size: 11pt;
+    margin-top: 7px;
+}
+
+.search_content {
+    width: 95%;
+    float: right;
+    font-size: 10pt;
+    margin: 5px;
+    line-height: 160%
+}
+
+.drawer {
+    touch-action: none;
+}
+
+.draw_menu {
+    margin-top: 100px;
+}
+
+.menu_div {
+    width: 311px;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.menu_set {
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.menubutton {
+    width: 110px;
+    height: 110px;
+    background-color: rgb(0, 90, 170);
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgb(131, 143, 151);
+    margin: 0px;
+    border-style: none;
+}
+
+.button_margin {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    width: 154px;
+    height: 150px;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+.button_label {
+    text-align: center;
+    margin: 0px;
+    margin-top: 14px;
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.bookmark_card{
+	border : 1px solid rgba(131, 143, 151, 0.5);
+}
+
+.bookmark_buttonset{
+	float:right;
+	flex-direction: row;
+	display: flex;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 120, 150, 1);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #111;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left 0.5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.law_title {
+    font-size: 14pt;
+    font-weight: bold;
+    padding-bottom: 2pt;
+    padding-right: 2pt;
+}
+
+.found {
+    background-color: #ff0;
+}
+
+.b {
+    font-weight: bold;
+    background-color: #04ff00c7
+}
+div.hang {
+    font-wieght: normal;
+    color: #111;
+}
+
+div.hang label {
+    font-wieght: normal;
+    color: #111;
+}
+.highlight{
+	background-color: #04ff00c7;
+}
+/* span.s1 占쏙옙 spans1 label 占쏙옙 占쏙옙占쏙옙 占쌈쇽옙 */
+.view_title{
+	line-heigth : 200%;
+}
+.view_content{
+	
+}
+.cookiebutton{
+	background-color: rgb(255, 255, 255, 0);
+	border: none;
+	padding  :0px;
+}
+span{
+	line-height: 160%;
+	font-wieght: normal;
+	color: #111;
+	
+}
+/* spans1 label.b 占쏙옙 占쏙옙荑∽옙占� 특占쏙옙占쏙옙 占쌈쇽옙 */
+.star {
+	max-width : 20px;
+}
+
+
+.SearchCard {
+    width: 300px;
+    font-size: 12pt;
+    line-height: 160%;
+    border-bottom: 2px solid rgb(0, 90, 170);
+    padding: 10px 15px 15px 15px;
+    margin: 0px 10px 5px 10px;
+}
+.ViewCard{
+	width: 320px;
+	font-size: 12pt;
+	line-heigth: 160%;
+	padding : 5px 10px 10px 5px;
+	margin : 0px 10px 5px 10px;
+}
+
+.alio {
+	max-width:200px;
+	height:auto;
+	padding:5px;
+	margin-bottom:10px;
+}
+.panel{
+	display:none;
+	
+}
+.ho{
+	line-heigth: 160%;
+}
+
+
+.mask{width:100%; height:100%; position:fixed; left:0; top:0; z-index:10; background:#000; opacity:.5; filter:alpha(opacity=50);}
+
+#modalLayer{display:none; position:relative;}
+#modalLayer .modalContent{width:440px; height:200px; padding:20px; border:1px solid #ccc; position:fixed; left:50%; top:50%; z-index:11; background:#fff;}
+#modalLayer .modalContent button{position:absolute; right:0; top:0; cursor:pointer;}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>jQuery Highlite Plugin Example</title>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="js/jquery.highlite.js"></script>
+    </head>
+    <body>
+        <header class="header">
+        <div class="container">
+            <input type="search" id="search" placeholder="Search" autofocus class="form-control">
+          </div>
+        </header>
+        <main class="content">
+            <h1>jQuery Highlite Plugin Example</h1>
+            <h2>Highlite is a really small jQuery text highlighting plugin which enables you to live search and highlight text found in a specific container.</h2>
+            <div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras erat nisl, auctor vitae nulla vestibulum, placerat fringilla massa. Aenean vel massa interdum, pellentesque nulla non, laoreet dui. Donec condimentum lorem tortor, et mattis nunc commodo quis. Mauris eget est vitae orci mollis scelerisque ac vel eros. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel scelerisque lorem. Aliquam massa erat, mollis nec enim nec, finibus blandit purus. Cras in tellus nunc. Suspendisse imperdiet felis id sem faucibus eleifend. Vivamus posuere suscipit quam bibendum varius. Nullam ultrices volutpat felis non sagittis. Donec ullamcorper, erat vel tincidunt porttitor, libero elit tristique tortor, quis ornare enim libero sed tortor.</p>
+            <p>Mauris ornare tortor sed turpis blandit fringilla. Nullam lobortis nisl a velit efficitur gravida. In commodo ligula eros, sit amet condimentum turpis ullamcorper at. Fusce efficitur congue odio vulputate aliquam. Donec porttitor malesuada diam, non vestibulum eros cursus pulvinar. Quisque porta elit in urna luctus, nec aliquet enim blandit. Vivamus luctus velit felis, eu tempus leo rutrum id. Vestibulum aliquet urna quis augue fringilla, eu ultricies nisi luctus. Pellentesque et libero a ex ornare aliquam ac et nunc. Aliquam quis turpis eget nibh hendrerit faucibus. Integer sit amet scelerisque nisl, a hendrerit velit. Phasellus sit amet felis mauris. Suspendisse sit amet diam cursus, vulputate eros vel, aliquet lectus. Duis malesuada nisl ac neque pellentesque, vel maximus orci iaculis. Pellentesque eleifend libero quis sem tempor vulputate. Vivamus vehicula vel magna non maximus.</p>
+            <p>Phasellus congue vestibulum elit eget cursus. Sed eu maximus lacus, at ultrices augue. Nunc dictum scelerisque pharetra. Ut sed urna elit. Proin laoreet non turpis eget sollicitudin. Fusce dapibus nisi nec porttitor ultricies. Ut sit amet erat faucibus, gravida augue eu, hendrerit tellus. Praesent in viverra odio. Morbi dignissim tortor nec purus tincidunt sollicitudin.</p>
+            <p>Curabitur vitae risus at felis convallis maximus pretium vitae tortor. Aliquam et pretium sapien. Sed vulputate mi ut mauris dictum sagittis. Praesent condimentum orci a leo ornare, luctus rutrum enim accumsan. Quisque tristique quis augue ac imperdiet. Aliquam velit diam, pharetra a fermentum eu, cursus sit amet dolor. Praesent volutpat velit ut nibh dapibus egestas. Praesent non sollicitudin ipsum, et tincidunt nibh. Integer efficitur interdum eros sit amet luctus. Quisque vel congue leo. Integer porttitor eleifend ex, vel hendrerit nulla posuere nec. Nunc imperdiet libero nibh, ut molestie erat cursus ac. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed a ex vehicula, mollis dolor vitae, sollicitudin tellus.</p>
+            <p>Nam laoreet feugiat suscipit. Donec felis magna, finibus sit amet pulvinar sed, dictum ultricies ex. Morbi velit sem, bibendum ut odio at, feugiat gravida justo. Proin sodales nisl et lorem semper tincidunt. Etiam eros augue, aliquam nec tempus nec, blandit sed elit. Donec ut nibh ut leo vehicula sagittis. Aenean semper, odio vitae scelerisque ornare, erat metus tincidunt est, at fringilla elit urna sed dui.</p>
+            <p>Another paragraph <a href="javascript:void(0)">link</a></p>
+        </main>
+        <script>
+            $(function () {
+                $("#search").on("search change keyup", function () {
+                    var text = this.value;
+                    $(".content").highlite({
+                        text: text
+                    });
+                });
+            });
+        </script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>
